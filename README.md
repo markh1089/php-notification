@@ -50,8 +50,27 @@ To run PHPUnit all tests
 
 To run a specific test append the terminal command with `--filter {testName}`
 ```bash
-./vendor/bin/phpunit
+./vendor/bin/phpunit --filter PhoneValidatorTest
 ```
 
 ## Submission
 Please submit your solution as a GitHub repository and share the repository link with us.
+
+
+### Approach/Solution
+
+Initially, got the project up and running, and started running the commands. 
+
+I identified the task list from top to bottom and tried to manage my branching strategy around that. For the most part each branch i merged in represented a task section.
+
+For the `SendResult` class, i kept as a basic DTO to maintain immutability throughout its usage. I could see where it was expected as a return type and implemented dummy data within the DTO until i could hook it up correctly
+
+As for dependency injection into the `./bin/console` this was all a bit foreign for me coming from a Laravel background, the comment identified that I needed to bring the `NotificationService` class which i could further interrogate to see that it accepted an array of channels (`emailSendingService` and `SmsSendingService`).
+
+Added the `libpphonenumber-for-php` (https://github.com/giggsey/libphonenumber-for-php) package to handle phone validation. I set this up to accept GB phone numbers by default, however this can be extended to allow for other phone numbers to be accepted based on the passing of the country code as an attribute.
+
+Added custom exception handling - utilised the `SendingServiceInterface` & `NotificationServiceInterface` docblocks to identify what classes I should be creating and what exactly I should be creating this for.
+
+Tests are not my strong point, however I have created some quick tests to handle some of the classes, but if i was to do this again, i would likely start with a TDD approach. As it isn't my strongest suite, I left it till the end.
+
+Additionally, I moved a few classes around into different folder structures to how I would seperate and isolated classes with shared output standards. 
