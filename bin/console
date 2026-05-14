@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+// application.php
+
+require __DIR__.'/../vendor/autoload.php';
+
+use Mantledevelopment\PhpTest\NotificationService;
+use Symfony\Component\Console\Application;
+
+$application = new Application();
+
+$application->addCommand(
+    new \Mantledevelopment\PhpTest\Command\SendNotificationCommand(
+        // TODO: Inject the NotificationService here with its required dependencies.
+    )
+);
+
+$application->run();
