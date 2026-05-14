@@ -4,7 +4,7 @@ namespace Mantledevelopment\PhpTest\Channel;
 
 use Mantledevelopment\PhpTest\NotificationInterface;
 use Mantledevelopment\PhpTest\NotificationType;
-use Mantledevelopment\PhpTest\SendResult;
+use Mantledevelopment\PhpTest\DTO\SendResult;
 
 /**
  * Service for sending email notifications.
@@ -13,6 +13,8 @@ class EmailSendingService implements SendingServiceInterface
 {
     public function send(NotificationInterface $notification): SendResult
     {
+        //todo: integrate
+        return SendResult::create(success:true, referenceId: 12345);
     }
 
     private function validateEmail(string $email): bool

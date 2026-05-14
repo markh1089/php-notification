@@ -4,6 +4,7 @@ namespace Mantledevelopment\PhpTest;
 
 use Mantledevelopment\PhpTest\Channel\EmailSendingService;
 use Mantledevelopment\PhpTest\Channel\SendingServiceInterface;
+use Mantledevelopment\PhpTest\DTO\SendResult;
 
 class NotificationService implements NotificationServiceInterface
 {
@@ -15,6 +16,8 @@ class NotificationService implements NotificationServiceInterface
 
     public function sendNotification(NotificationInterface $notification): SendResult
     {
+        //todo: integrate
+        return SendResult::create(success:true, referenceId: 12345);
     }
 
     private function getService(NotificationType $notificationType): SendingServiceInterface

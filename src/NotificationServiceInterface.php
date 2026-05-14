@@ -5,6 +5,8 @@ namespace Mantledevelopment\PhpTest;
 use InvalidArgumentException;
 use Mantledevelopment\PhpTest\Exception\InvalidChannelException;
 use Mantledevelopment\PhpTest\Exception\SendingException;
+use Mantledevelopment\PhpTest\DTO\SendResult;
+
 
 interface NotificationServiceInterface
 {
