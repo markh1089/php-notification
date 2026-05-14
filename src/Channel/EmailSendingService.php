@@ -3,7 +3,7 @@
 namespace Mantledevelopment\PhpTest\Channel;
 
 use Mantledevelopment\PhpTest\NotificationInterface;
-use Mantledevelopment\PhpTest\NotificationType;
+use Mantledevelopment\PhpTest\Enum\NotificationType;
 use Mantledevelopment\PhpTest\DTO\SendResult;
 
 /**
@@ -13,8 +13,18 @@ class EmailSendingService implements SendingServiceInterface
 {
     public function send(NotificationInterface $notification): SendResult
     {
-        //todo: integrate
-        return SendResult::create(success:true, referenceId: 12345);
+        $referenceId = $this->generateReferenceId();
+        
+        if (!$this->validateEmail($notification->getRecipient())) {
+            throw new \InvalidArgumentException('Invalid email address' . ' - ' . $notification->getRecipient() . ' - ' . $referenceId);
+        }
+
+        return SendResult::create(success: true, referenceId: $referenceId);
+    }
+
+    public function supportsNotificationType(NotificationType $type): bool
+    {
+        return $type === NotificationType::Email;
     }
 
     private function validateEmail(string $email): bool
@@ -22,8 +32,8 @@ class EmailSendingService implements SendingServiceInterface
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    public function supportsNotificationType(NotificationType $type): bool
+    private function generateReferenceId(): string
     {
-        return $type === NotificationType::Email;
+        return uniqid();
     }
 }
