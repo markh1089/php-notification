@@ -1,6 +1,6 @@
 <?php
 
-namespace Mantledevelopment\PhpTest;
+namespace Mantledevelopment\PhpTest\Enum;
 
 enum NotificationType: string
 {

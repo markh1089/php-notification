@@ -3,7 +3,7 @@
 namespace Mantledevelopment\PhpTest\Channel;
 
 use Mantledevelopment\PhpTest\NotificationInterface;
-use Mantledevelopment\PhpTest\NotificationType;
+use Mantledevelopment\PhpTest\Enum\NotificationType;
 use Mantledevelopment\PhpTest\DTO\SendResult;
 
 /**

@@ -6,7 +6,7 @@ namespace Mantledevelopment\PhpTest\Command;
 
 use Mantledevelopment\PhpTest\Notification;
 use Mantledevelopment\PhpTest\NotificationServiceInterface;
-use Mantledevelopment\PhpTest\NotificationType;
+use Mantledevelopment\PhpTest\Enum\NotificationType;
 use Symfony\Component\Console\Attribute\Argument;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -31,6 +31,7 @@ class SendNotificationCommand
         SymfonyStyle $io
     ): int
     {
+        dump('hit!');
         return Command::SUCCESS;
     }
 }
