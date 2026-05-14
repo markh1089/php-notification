@@ -26,7 +26,7 @@ If you get stuck, don’t hesitate to ask for clarification or guidance.
 8. Write a brief README explaining your approach and solution.
 9. Bonus: Add unit tests to verify your implementation.
 
-## Getting Started
+## Getting Started 
 You can run the console command using:
 ```bash
 php bin/console app:send_notification Email recipient@example.com "Hello world"
