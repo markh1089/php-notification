@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace Mantledevelopment\PhpTest\Command;
 
+use InvalidArgumentException;
 use Mantledevelopment\PhpTest\Notification;
 use Mantledevelopment\PhpTest\NotificationServiceInterface;
 use Mantledevelopment\PhpTest\Enum\NotificationType;
+use Mantledevelopment\PhpTest\Exception\InvalidChannelException;
+use Mantledevelopment\PhpTest\Exception\SendingException;
 use Symfony\Component\Console\Attribute\Argument;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
+
 
 #[AsCommand(name: 'app:send_notification', description: 'Sends a notification', help: 'This command sends a notification to a recipient using a specified channel. The channel must be one of the following: Email or SMS. The recipient must be a valid email address or phone number. The message must be a string.', usages: ['app:send_notification <channel> <recipient> <message>'])]
 class SendNotificationCommand
@@ -35,8 +39,8 @@ class SendNotificationCommand
             $notification = new Notification(type: NotificationType::from($channel->value), recipient: $recipient, message: $message);
             $result = $this->notificationService->sendNotification($notification);
             $io->text("Result: " . ($result->success ? 'Success' : 'Failure') . " - {$result->referenceId}");
-        } catch (\Throwable $throwable) {
-            $io->error($throwable->getMessage());
+        } catch (SendingException | InvalidArgumentException | InvalidChannelException | \Exception $e) {
+            $io->error("Error: {$e->getMessage()}");
             return Command::FAILURE;
         }
 
