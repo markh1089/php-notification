@@ -5,7 +5,7 @@ namespace Mantledevelopment\PhpTest\Channel;
 use Mantledevelopment\PhpTest\Exception\SendingException;
 use Mantledevelopment\PhpTest\NotificationInterface;
 use Mantledevelopment\PhpTest\NotificationType;
-use Mantledevelopment\PhpTest\SendResult;
+use Mantledevelopment\PhpTest\DTO\SendResult;
 
 /**
  * Interface for sending Notifications
