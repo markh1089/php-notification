@@ -27,6 +27,10 @@ If you get stuck, don’t hesitate to ask for clarification or guidance.
 9. Bonus: Add unit tests to verify your implementation.
 
 ## Getting Started 
+install dependencies
+```bash
+composer i
+```
 You can run the console command using:
 ```bash
 php bin/console app:send_notification Email recipient@example.com "Hello world"
@@ -35,6 +39,19 @@ php bin/console app:send_notification Email recipient@example.com "Hello world"
 php bin/console app:send_notification SMS 07123456789 "Hello world"
 ```
 Currently, it will fail due to missing dependencies and incomplete implementations.
+
+## Testing
+Tests are held in the root `\test` directory
+
+To run PHPUnit all tests
+```bash
+./vendor/bin/phpunit
+```
+
+To run a specific test append the terminal command with `--filter {testName}`
+```bash
+./vendor/bin/phpunit
+```
 
 ## Submission
 Please submit your solution as a GitHub repository and share the repository link with us.
