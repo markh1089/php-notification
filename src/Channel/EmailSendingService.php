@@ -5,6 +5,7 @@ namespace Mantledevelopment\PhpTest\Channel;
 use Mantledevelopment\PhpTest\NotificationInterface;
 use Mantledevelopment\PhpTest\Enum\NotificationType;
 use Mantledevelopment\PhpTest\DTO\SendResult;
+use Mantledevelopment\PhpTest\Helper\ReferenceIdGenerator;
 
 /**
  * Service for sending email notifications.
@@ -13,7 +14,7 @@ class EmailSendingService implements SendingServiceInterface
 {
     public function send(NotificationInterface $notification): SendResult
     {
-        $referenceId = $this->generateReferenceId();
+        $referenceId = ReferenceIdGenerator::generate();
         
         if (!$this->validateEmail($notification->getRecipient())) {
             throw new \InvalidArgumentException('Invalid email address' . ' - ' . $notification->getRecipient() . ' - ' . $referenceId);
@@ -30,10 +31,5 @@ class EmailSendingService implements SendingServiceInterface
     private function validateEmail(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
-    }
-
-    private function generateReferenceId(): string
-    {
-        return uniqid();
     }
 }
