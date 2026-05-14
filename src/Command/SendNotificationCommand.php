@@ -35,9 +35,9 @@ class SendNotificationCommand
             $notification = new Notification(type: NotificationType::from($channel->value), recipient: $recipient, message: $message);
             $result = $this->notificationService->sendNotification($notification);
             $io->text("Result: " . ($result->success ? 'Success' : 'Failure') . " - {$result->referenceId}");
-        }
-        catch (\Throwable $throwable) {
+        } catch (\Throwable $throwable) {
             $io->error($throwable->getMessage());
+            return Command::FAILURE;
         }
 
         $io->success("Notification successfully sent to $recipient");
