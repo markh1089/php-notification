@@ -2,10 +2,12 @@
 
 namespace Mantledevelopment\PhpTest;
 
-use Mantledevelopment\PhpTest\Channel\EmailSendingService;
 use Mantledevelopment\PhpTest\Channel\SendingServiceInterface;
 use Mantledevelopment\PhpTest\DTO\SendResult;
 use Mantledevelopment\PhpTest\Enum\NotificationType;
+use Mantledevelopment\PhpTest\Exception\SendingException;
+use Mantledevelopment\PhpTest\Exception\InvalidChannelException;
+
 
 class NotificationService implements NotificationServiceInterface
 {
@@ -20,7 +22,7 @@ class NotificationService implements NotificationServiceInterface
         try {
             $result = $service->send($notification);
         } catch (\Exception $e) {
-            throw new \Exception( $e->getMessage());
+            throw new SendingException(message: $e->getMessage());
         }
 
         return SendResult::create(success: $result->success, referenceId: $result->referenceId);
@@ -35,6 +37,9 @@ class NotificationService implements NotificationServiceInterface
             }
         }
 
-        throw new \Exception("Unsupported channel: {$notificationType->value}");
+        throw new InvalidChannelException(
+            message: "Unsupported channel: {$notificationType->value}",
+            channel: $notificationType,
+        );
     }
 }
