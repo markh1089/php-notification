@@ -4,6 +4,7 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+use Mantledevelopment\PhpTest\Channel\EmailSendingService;
 use Mantledevelopment\PhpTest\NotificationService;
 use Symfony\Component\Console\Application;
 
@@ -11,7 +12,9 @@ $application = new Application();
 
 $application->addCommand(
     new \Mantledevelopment\PhpTest\Command\SendNotificationCommand(
-        // TODO: Inject the NotificationService here with its required dependencies.
+        new \Mantledevelopment\PhpTest\NotificationService([
+            new EmailSendingService(),
+        ])
     )
 );
 
