@@ -2,6 +2,8 @@
 
 namespace Mantledevelopment\PhpTest;
 
+use Mantledevelopment\PhpTest\Enum\NotificationType;
+
 readonly class Notification implements NotificationInterface
 {
     public function __construct(

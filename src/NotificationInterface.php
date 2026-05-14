@@ -2,6 +2,8 @@
 
 namespace Mantledevelopment\PhpTest;
 
+use Mantledevelopment\PhpTest\Enum\NotificationType;
+
 interface NotificationInterface
 {
     public function getType(): NotificationType;
